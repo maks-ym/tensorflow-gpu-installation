@@ -5,16 +5,20 @@ If `pip 3 -U install tensorflow-gpu` did not work and you need compile TensorFlo
 
 I had this messege: `The TensorFlow library was compiled to use AVX instructions, but these aren't available on your machine.`
 
+### TL;DR
+
+If just want to download compiled version, go to `Compiled python wheels` section
+
 ### General steps
-0. Check versions of OS, CUDA capability of GPU, python
-1. Install nVidia driver
-2. Install CUDA
-3. Install cuDNN
-4. Compile TensorFlow GPU
-5. Install TensorFlow and some other useful packages
-6. Test installation
-7. Compiled python wheels
-8. Other useful links
+1. Check versions of OS, CUDA capability of GPU, python
+2. Install nVidia driver
+3. Install CUDA
+4. Install cuDNN
+5. Compile TensorFlow GPU
+6. Install TensorFlow and some other useful packages
+7. Test installation
+8. Compiled python wheels
+9. Other useful links
 
 ### Check versions of OS, CUDA capability of GPU, python
 
@@ -37,6 +41,7 @@ Find in table here: https://en.wikipedia.org/wiki/CUDA#GPUs_supported
 Check versions used for prebuilt packages: https://www.tensorflow.org/install/source#linux
 
 For example, for TF 12
+
 | Version | Python version | Compiler | Build tools | cuDNN | CUDA |
 | --- | --- | --- | --- | --- | --- |
 | tensorflow_gpu-1.12.0 | 2.7, 3.3-3.6 | GCC 4.8 | Bazel 0.15.0 | 7 | 9 |
@@ -66,3 +71,50 @@ $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 ```
 [installation instructions taken from here](https://developer.download.nvidia.com/compute/machine-learning/cudnn/secure/v7.0.5/prod/Doc/cuDNN-Installation-Guide.pdf?3XnViXudgpO1wDx_qLlC-EW1BJHGwxpEDDYBXFUCKtjgc_18oxXgfG49FSZWck_m1FTa09g5GTk57LGYPb7jB5TgtAIOlIrZTCuPf1CIJC2VemxIh9kfrjlUGonMMLnztHttD5LT_oF3huMnNVju7jIW6ca10uW3dZ3kZOti9uIs7B3wSulhKi9sdDwZgdHzQw#%5B%7B%22num%22%3A19%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C108%2C275.369%2Cnull%5D)
+
+* after installing driver, CUDA and cuDNN, to check whether installation is good, run
+> $ nvidia-smi
+
+Table with info about GPU usage should be shown.
+
+### Compile TensorFlow GPU
+
+* build TF from source as in [instructions here](https://www.tensorflow.org/install/source)
+* **Note**: Used Bazel version 0.19.2: [download here](https://github.com/bazelbuild/bazel/releases/download/0.19.2/bazel-0.19.2-installer-linux-x86_64.sh)
+
+### Install TensorFlow and some other useful packages
+
+If done all above TensorFlow should have already been installed.
+
+Additional packages you may like to install:
+* keras
+* numpy
+* scikit-learn
+* matplotlib
+
+#### Test installation
+
+To test whether TF uses GPU, run in Terminal:
+
+> $ watch -n1 nvidia-smi
+
+And run any example for model training.
+
+#### Compiled python wheels
+
+| TF Version | Python version | Compiler | Build tools | cuDNN | CUDA | Links |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1.12.0 GPU | 3.6.8 | GCC 6.5 | Bazel 0.19.2 | 7.0.5 | 9 | download wheel |
+
+#### Other useful links (used while compiling wheels)
+
+* [TF 1.12.0, CPU/GPU, CUDA 9.0, CuDNN 7.4, Python 3.5, Ubuntu 16.04, Skylake, -AVX, +SSE4 #99](https://github.com/yaroslavvb/tensorflow-community-wheels/issues/99)
+* [Prebuilt binaries do not work with CPUs that do not have AVX instruction sets. #19584](https://github.com/tensorflow/tensorflow/issues/19584)
+* [My CPU doesn't support Tensorflow AVX instructions #34](https://github.com/openai/gpt-2/issues/34)
+* [TensorFlow - Build from source](https://www.tensorflow.org/install/source)
+* [Wikipedia > CUDA > GPUs supported](https://en.wikipedia.org/wiki/CUDA#GPUs_supported)
+* [CUDA Toolkit 9.0 Downloads](https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1704&target_type=runfilelocal)
+* [Bazel 0.19.2](https://github.com/bazelbuild/bazel/releases/tag/0.19.2)
+* [cuDNN 7 Manual](https://developer.download.nvidia.com/compute/machine-learning/cudnn/secure/v7.0.5/prod/Doc/cuDNN-Installation-Guide.pdf?3XnViXudgpO1wDx_qLlC-EW1BJHGwxpEDDYBXFUCKtjgc_18oxXgfG49FSZWck_m1FTa09g5GTk57LGYPb7jB5TgtAIOlIrZTCuPf1CIJC2VemxIh9kfrjlUGonMMLnztHttD5LT_oF3huMnNVju7jIW6ca10uW3dZ3kZOti9uIs7B3wSulhKi9sdDwZgdHzQw#%5B%7B%22num%22%3A19%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C108%2C275.369%2Cnull%5D)
+* [cuDNN Archive](https://developer.nvidia.com/rdp/cudnn-archive)
+
