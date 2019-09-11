@@ -34,7 +34,9 @@ Find in table here: https://en.wikipedia.org/wiki/CUDA#GPUs_supported
 
 #### python version
 
-> $ python3 --version # e.g. Python 3.6.8
+```bash
+$ python3 --version # e.g. Python 3.6.8
+```
 
 ### Install nVidia driver
 
@@ -54,14 +56,18 @@ Google for instructions.
 
 *CUDA Toolkit 9.0* for *Ubuntu 18.04* is not available, but version for *17.04* should work fine.
 
-* visit & download: https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1704&target_type=runfilelocal
+* visit & download CUDA 9.0: 
+[official (recommended)](https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1704&target_type=runfilelocal) | 
+[mirror](https://drive.google.com/open?id=1BqQIj4Xsx48rX6eZ9EBFqrHFOLObJZHA)
 * base installer must suffice, read instructions there
 
 ### Install cuDNN
 
 > cuDNN 7 (v7.0.5)
 
-* download cuDNN 7 (v7.0.5): [origina page (need account)](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.0.5/prod/9.0_20171129/cudnn-9.0-linux-x64-v7)
+* download cuDNN 7 (v7.0.5): 
+[origina page (need account, recommended)](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.0.5/prod/9.0_20171129/cudnn-9.0-linux-x64-v7) | 
+[mirror](https://drive.google.com/open?id=1uYd045bIragK4RbdSLZhEw0Q9-8jk7U0)
 * download appropriate tar archive (`cuDNN vX.X.X` Library for `CUDA Y.Y`) 
 
 ```bash
@@ -73,14 +79,19 @@ $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 [installation instructions taken from here](https://developer.download.nvidia.com/compute/machine-learning/cudnn/secure/v7.0.5/prod/Doc/cuDNN-Installation-Guide.pdf?3XnViXudgpO1wDx_qLlC-EW1BJHGwxpEDDYBXFUCKtjgc_18oxXgfG49FSZWck_m1FTa09g5GTk57LGYPb7jB5TgtAIOlIrZTCuPf1CIJC2VemxIh9kfrjlUGonMMLnztHttD5LT_oF3huMnNVju7jIW6ca10uW3dZ3kZOti9uIs7B3wSulhKi9sdDwZgdHzQw#%5B%7B%22num%22%3A19%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C108%2C275.369%2Cnull%5D)
 
 * after installing driver, CUDA and cuDNN, to check whether installation is good, run
-> $ nvidia-smi
+
+```bash
+$ nvidia-smi
+```
 
 Table with info about GPU usage should be shown.
 
 ### Compile TensorFlow GPU
 
 * build TF from source as in [instructions here](https://www.tensorflow.org/install/source)
-* **Note**: Used Bazel version 0.19.2: [download here](https://github.com/bazelbuild/bazel/releases/download/0.19.2/bazel-0.19.2-installer-linux-x86_64.sh)
+* **Note**: Used Bazel version 0.19.2: 
+[official repo (recommended)](https://github.com/bazelbuild/bazel/releases/download/0.19.2/bazel-0.19.2-installer-linux-x86_64.sh) | 
+[mirror](https://drive.google.com/open?id=1almk3dxHYxnTzdbkOefgLTQDoKnCT_9b)
 
 ### Install TensorFlow and some other useful packages
 
@@ -96,7 +107,9 @@ Additional packages you may like to install:
 
 To test whether TF uses GPU, run in Terminal:
 
-> $ watch -n1 nvidia-smi
+```bash
+$ watch -n1 nvidia-smi
+```
 
 And run any example for model training.
 
@@ -104,7 +117,7 @@ And run any example for model training.
 
 | TF Version | Python version | Compiler | Build tools | cuDNN | CUDA | Links |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1.12.0 GPU | 3.6.8 | GCC 6.5 | Bazel 0.19.2 | 7.0.5 | 9 | download wheel |
+| 1.12.0 GPU | 3.6.8 | GCC 6.5 | Bazel 0.19.2 | 7.0.5 | 9 | [download wheel](https://drive.google.com/open?id=1uxVJO72k7O5ymVsADLU19GjkENPUIQ2w) |
 
 #### Other useful links (used while compiling wheels)
 
@@ -118,3 +131,7 @@ And run any example for model training.
 * [cuDNN 7 Manual](https://developer.download.nvidia.com/compute/machine-learning/cudnn/secure/v7.0.5/prod/Doc/cuDNN-Installation-Guide.pdf?3XnViXudgpO1wDx_qLlC-EW1BJHGwxpEDDYBXFUCKtjgc_18oxXgfG49FSZWck_m1FTa09g5GTk57LGYPb7jB5TgtAIOlIrZTCuPf1CIJC2VemxIh9kfrjlUGonMMLnztHttD5LT_oF3huMnNVju7jIW6ca10uW3dZ3kZOti9uIs7B3wSulhKi9sdDwZgdHzQw#%5B%7B%22num%22%3A19%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C108%2C275.369%2Cnull%5D)
 * [cuDNN Archive](https://developer.nvidia.com/rdp/cudnn-archive)
 
+
+_____________________________________________________________________________
+
+*If you have any corrections, recommendations or editions, please create issues*
